@@ -1,0 +1,153 @@
+[2026-02-21T17:27:22.314Z] === RehabApp Setup Manager Started ===
+[2026-02-21T17:27:22.324Z] Platform: win32
+[2026-02-21T17:27:22.326Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-02-21T17:27:22.328Z] Checking Node.js...
+[2026-02-21T17:27:22.683Z] ✓ Node.js found: v24.2.0
+[2026-02-21T17:27:22.685Z] Checking npm...
+[2026-02-21T17:27:24.431Z] ✓ npm found: 11.3.0
+[2026-02-21T17:27:24.435Z] Checking Python (required for native modules)...
+[2026-02-21T17:27:26.017Z] ✓ Python found: Python 3.13.5
+[2026-02-21T17:27:26.019Z] Checking build tools...
+[2026-02-21T17:27:27.083Z] ✓ Visual Studio Build Tools detected
+[2026-02-21T17:27:27.085Z] Checking node_modules...
+[2026-02-21T17:27:27.087Z] ✓ Module found: express
+[2026-02-21T17:27:27.095Z] ✓ Module found: socket.io
+[2026-02-21T17:27:27.098Z] ERROR: ✗ Module missing: better-sqlite3
+[2026-02-21T17:27:27.101Z] === Setup Check Summary ===
+[2026-02-21T17:27:27.103Z] ⚠ Some checks failed. Attempting recovery...
+[2026-02-21T17:27:27.110Z] Failed checks: node_modules
+[2026-02-21T17:27:27.117Z] Attempting npm install to fix missing modules...
+[2026-02-21T17:27:27.118Z] Running npm install...
+[2026-02-21T17:28:21.434Z] === RehabApp Setup Manager Started ===
+[2026-02-21T17:28:21.443Z] Platform: win32
+[2026-02-21T17:28:21.444Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-02-21T17:28:21.446Z] Checking Node.js...
+[2026-02-21T17:28:21.869Z] ✓ Node.js found: v24.2.0
+[2026-02-21T17:28:21.872Z] Checking npm...
+[2026-02-21T17:28:22.843Z] ✓ npm found: 11.3.0
+[2026-02-21T17:28:22.845Z] Checking Python (required for native modules)...
+[2026-02-21T17:28:23.604Z] ✓ Python found: Python 3.13.5
+[2026-02-21T17:28:23.605Z] Checking build tools...
+[2026-02-21T17:28:24.189Z] ✓ Visual Studio Build Tools detected
+[2026-02-21T17:28:24.191Z] Checking node_modules...
+[2026-02-21T17:28:24.193Z] ✓ Module found: express
+[2026-02-21T17:28:24.197Z] ✓ Module found: socket.io
+[2026-02-21T17:28:24.200Z] ✓ Optional module found: better-sqlite3
+[2026-02-21T17:28:24.202Z] === Setup Check Summary ===
+[2026-02-21T17:28:24.204Z] ✓ All critical checks passed! System is ready.
+[2026-02-21T17:28:24.205Z] === Setup Manager Completed ===
+
+[2026-02-21T19:33:01.090Z] === RehabApp Setup Manager Started ===
+[2026-02-21T19:33:01.101Z] Platform: win32
+[2026-02-21T19:33:01.113Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-02-21T19:33:01.114Z] Checking Node.js...
+[2026-02-21T19:33:01.698Z] ✓ Node.js found: v24.2.0
+[2026-02-21T19:33:01.701Z] Checking npm...
+[2026-02-21T19:33:03.234Z] ✓ npm found: 11.3.0
+[2026-02-21T19:33:03.236Z] Checking Python (required for native modules)...
+[2026-02-21T19:33:04.410Z] ✓ Python found: Python 3.13.5
+[2026-02-21T19:33:04.412Z] Checking build tools...
+[2026-02-21T19:33:05.398Z] ✓ Visual Studio Build Tools detected
+[2026-02-21T19:33:05.417Z] Checking node_modules...
+[2026-02-21T19:33:05.446Z] ✓ Module found: express
+[2026-02-21T19:33:05.485Z] ✓ Module found: socket.io
+[2026-02-21T19:33:05.524Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-02-21T19:33:05.566Z] === Setup Check Summary ===
+[2026-02-21T19:33:05.567Z] ✓ All critical checks passed! System is ready.
+[2026-02-21T19:33:05.569Z] === Setup Manager Completed ===
+
+[2026-02-21T20:07:22.585Z] === RehabApp Setup Manager Started ===
+[2026-02-21T20:07:22.593Z] Platform: win32
+[2026-02-21T20:07:22.594Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-02-21T20:07:22.595Z] Checking Node.js...
+[2026-02-21T20:07:23.059Z] ✓ Node.js found: v24.2.0
+[2026-02-21T20:07:23.063Z] Checking npm...
+[2026-02-21T20:07:24.090Z] ✓ npm found: 11.3.0
+[2026-02-21T20:07:24.091Z] Checking Python (required for native modules)...
+[2026-02-21T20:07:25.436Z] ✓ Python found: Python 3.13.5
+[2026-02-21T20:07:25.437Z] Checking build tools...
+[2026-02-21T20:07:26.061Z] ✓ Visual Studio Build Tools detected
+[2026-02-21T20:07:26.063Z] Checking node_modules...
+[2026-02-21T20:07:26.064Z] ✓ Module found: express
+[2026-02-21T20:07:26.065Z] ✓ Module found: socket.io
+[2026-02-21T20:07:26.067Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-02-21T20:07:26.068Z] === Setup Check Summary ===
+[2026-02-21T20:07:26.070Z] ✓ All critical checks passed! System is ready.
+[2026-02-21T20:07:26.074Z] === Setup Manager Completed ===
+
+[2026-02-22T08:23:15.518Z] === RehabApp Setup Manager Started ===
+[2026-02-22T08:23:15.526Z] Platform: win32
+[2026-02-22T08:23:15.527Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-02-22T08:23:15.529Z] Checking Node.js...
+[2026-02-22T08:23:15.806Z] ✓ Node.js found: v24.2.0
+[2026-02-22T08:23:15.807Z] Checking npm...
+[2026-02-22T08:23:16.473Z] ✓ npm found: 11.3.0
+[2026-02-22T08:23:16.474Z] Checking Python (required for native modules)...
+[2026-02-22T08:23:17.523Z] ✓ Python found: Python 3.13.5
+[2026-02-22T08:23:17.524Z] Checking build tools...
+[2026-02-22T08:23:18.444Z] ✓ Visual Studio Build Tools detected
+[2026-02-22T08:23:18.445Z] Checking node_modules...
+[2026-02-22T08:23:18.447Z] ✓ Module found: express
+[2026-02-22T08:23:18.452Z] ✓ Module found: socket.io
+[2026-02-22T08:23:18.458Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-02-22T08:23:18.461Z] === Setup Check Summary ===
+[2026-02-22T08:23:18.470Z] ✓ All critical checks passed! System is ready.
+[2026-02-22T08:23:18.474Z] === Setup Manager Completed ===
+
+[2026-03-01T20:14:26.523Z] === RehabApp Setup Manager Started ===
+[2026-03-01T20:14:26.549Z] Platform: win32
+[2026-03-01T20:14:26.550Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-03-01T20:14:26.552Z] Checking Node.js...
+[2026-03-01T20:14:26.917Z] ✓ Node.js found: v24.2.0
+[2026-03-01T20:14:26.918Z] Checking npm...
+[2026-03-01T20:14:28.026Z] ✓ npm found: 11.3.0
+[2026-03-01T20:14:28.028Z] Checking Python (required for native modules)...
+[2026-03-01T20:14:29.232Z] ✓ Python found: Python 3.13.5
+[2026-03-01T20:14:29.234Z] Checking build tools...
+[2026-03-01T20:14:29.806Z] ✓ Visual Studio Build Tools detected
+[2026-03-01T20:14:29.809Z] Checking node_modules...
+[2026-03-01T20:14:29.810Z] ✓ Module found: express
+[2026-03-01T20:14:29.811Z] ✓ Module found: socket.io
+[2026-03-01T20:14:29.812Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-03-01T20:14:29.813Z] === Setup Check Summary ===
+[2026-03-01T20:14:29.815Z] ✓ All critical checks passed! System is ready.
+[2026-03-01T20:14:29.820Z] === Setup Manager Completed ===
+
+[2026-03-01T20:15:27.373Z] === RehabApp Setup Manager Started ===
+[2026-03-01T20:15:27.379Z] Platform: win32
+[2026-03-01T20:15:27.380Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-03-01T20:15:27.382Z] Checking Node.js...
+[2026-03-01T20:15:27.605Z] ✓ Node.js found: v24.2.0
+[2026-03-01T20:15:27.606Z] Checking npm...
+[2026-03-01T20:15:28.362Z] ✓ npm found: 11.3.0
+[2026-03-01T20:15:28.364Z] Checking Python (required for native modules)...
+[2026-03-01T20:15:29.008Z] ✓ Python found: Python 3.13.5
+[2026-03-01T20:15:29.009Z] Checking build tools...
+[2026-03-01T20:15:29.501Z] ✓ Visual Studio Build Tools detected
+[2026-03-01T20:15:29.503Z] Checking node_modules...
+[2026-03-01T20:15:29.504Z] ✓ Module found: express
+[2026-03-01T20:15:29.505Z] ✓ Module found: socket.io
+[2026-03-01T20:15:29.506Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-03-01T20:15:29.507Z] === Setup Check Summary ===
+[2026-03-01T20:15:29.510Z] ✓ All critical checks passed! System is ready.
+[2026-03-01T20:15:29.511Z] === Setup Manager Completed ===
+
+[2026-03-01T20:20:51.356Z] === RehabApp Setup Manager Started ===
+[2026-03-01T20:20:51.415Z] Platform: win32
+[2026-03-01T20:20:51.417Z] Working dir: C:\Users\HP\Desktop\RehabApp
+[2026-03-01T20:20:51.438Z] Checking Node.js...
+[2026-03-01T20:20:52.064Z] ✓ Node.js found: v24.2.0
+[2026-03-01T20:20:52.065Z] Checking npm...
+[2026-03-01T20:20:52.991Z] ✓ npm found: 11.3.0
+[2026-03-01T20:20:52.992Z] Checking Python (required for native modules)...
+[2026-03-01T20:20:53.782Z] ✓ Python found: Python 3.13.5
+[2026-03-01T20:20:53.784Z] Checking build tools...
+[2026-03-01T20:20:54.405Z] ✓ Visual Studio Build Tools detected
+[2026-03-01T20:20:54.407Z] Checking node_modules...
+[2026-03-01T20:20:54.408Z] ✓ Module found: express
+[2026-03-01T20:20:54.412Z] ✓ Module found: socket.io
+[2026-03-01T20:20:54.413Z] ⚠ Optional module missing: better-sqlite3 (SQLite features will be unavailable; JSON persistence will work)
+[2026-03-01T20:20:54.415Z] === Setup Check Summary ===
+[2026-03-01T20:20:54.417Z] ✓ All critical checks passed! System is ready.
+[2026-03-01T20:20:54.421Z] === Setup Manager Completed ===
+

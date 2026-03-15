@@ -1,0 +1,31 @@
+directories:
+  output: dist2
+  buildResources: build
+appId: com.silvertech.rehabapp
+productName: RehabApp
+files:
+  - filter:
+      - main.js
+      - index_react.html
+      - index.html
+      - style_react.css
+      - style.css
+      - src/**/*
+      - assets/**/*
+      - config/**/*
+      - database/**/*
+      - manifest.webmanifest
+      - service-worker.js
+      - preload.js
+      - prompt.html
+      - server.js
+      - node_modules/**/*
+win:
+  icon: assets/silvertech_logo.ico
+  target:
+    - nsis
+    - portable
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+electronVersion: 25.9.8

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 16px; }
+    .container { display:flex; flex-direction:column; gap:8px; }
+    label { font-weight:600; }
+    input { padding:8px; font-size:14px; }
+    .actions { display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
+    button { padding:8px 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="msg">Enter value:</div>
+    <input id="value" type="text" placeholder="Enter value" />
+    <div class="actions">
+      <button id="cancel">Cancel</button>
+      <button id="ok">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    let promptId = null;
+    ipcRenderer.on('prompt-data', (evt, data) => {
+      promptId = data.id;
+      document.getElementById('msg').textContent = data.message || 'Enter value';
+      const input = document.getElementById('value');
+      input.value = data.defaultValue || '';
+      input.focus();
+      input.select();
+    });
+
+    document.getElementById('ok').addEventListener('click', () => {
+      const v = document.getElementById('value').value;
+      ipcRenderer.send('prompt-response-' + promptId, { value: v });
+    });
+    document.getElementById('cancel').addEventListener('click', () => {
+      ipcRenderer.send('prompt-response-' + promptId, { value: null });
+    });
+
+    document.getElementById('value').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('ok').click();
+      if (e.key === 'Escape') document.getElementById('cancel').click();
+    });
+  </script>
+</body>
+</html>

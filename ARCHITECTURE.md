@@ -1,0 +1,357 @@
+# RehabApp - User Flow & System Architecture
+
+## 🔄 Application Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    REHAB APP SYSTEM FLOW                     │
+└─────────────────────────────────────────────────────────────┘
+
+                              START APP
+                                  ↓
+                     ┌─────────────────────┐
+                     │   IS USER LOGGED IN?  │
+                     └─────────────────────┘
+                         ↙                ↘
+                    YES                  NO
+                    ↓                      ↓
+            ┌───────────────┐      ┌──────────────────┐
+            │  MAIN APP     │      │  LOGIN PAGE      │
+            │ (index.html)  │      │(assets/login.html)│
+            └───────────────┘      └──────────────────┘
+                    ↓                      ↓
+            ┌───────────────┐      ┌──────────────────┐
+            │ SHOW NAVBAR   │      │ SELECT ROLE      │
+            │ & MENU        │      │ ENTER USERNAME   │
+            └───────────────┘      │ ENTER PASSWORD   │
+                    ↓              │ CLICK LOGIN      │
+            ┌───────────────┐      └──────────────────┘
+            │ FILTER MENU   │              ↓
+            │ BY ROLE       │      ┌──────────────────┐
+            └───────────────┘      │ VALIDATE CREDS   │
+                    ↓              └──────────────────┘
+            ┌───────────────┐              ↓
+            │ LOAD          │      CREATE SESSION
+            │ DASHBOARD     │              ↓
+            └───────────────┘      REDIRECT TO
+                    ↓              MAIN APP
+            DISPLAY ROLE-      
+            SPECIFIC METRICS
+```
+
+---
+
+## 👥 Role-Based Access Matrix
+
+```
+┌──────────────┬──────────┬────────┬────────┬──────────┬──────────┐
+│ FEATURE      │ ADMIN    │ DOCTOR │ FINANCE│RECEPTION│THERAPIST │
+├──────────────┼──────────┼────────┼────────┼──────────┼──────────┤
+│ Dashboard    │    ✅    │   ✅   │   ✅   │    ✅    │    ✅    │
+│ Patients     │    ✅    │  ✅*   │   ❌   │    ✅    │   ✅*    │
+│ Add Patient  │    ✅    │   ✅   │   ❌   │    ❌    │    ❌    │
+│ Staff Mgmt   │    ✅    │   ❌   │   ❌   │    ❌    │    ❌    │
+│ Appointments │    ✅    │   ✅   │   ❌   │    ✅    │    ❌    │
+│ Finance      │    ✅    │   ✅*  │   ✅   │    ❌    │    ❌    │
+│ Reports      │    ✅    │   ❌   │   ✅   │    ❌    │    ❌    │
+│ Settings     │    ✅    │   ❌   │   ❌   │    ❌    │    ❌    │
+└──────────────┴──────────┴────────┴────────┴──────────┴──────────┘
+
+✅ = Full Access
+✅* = Limited Access (own data only)
+❌ = No Access
+```
+
+---
+
+## 🏗️ System Architecture
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                      FRONTEND (Electron)                    │
+├────────────────────────────────────────────────────────────┤
+│
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  │ Login Page   │  │ Main App     │  │ Navigation   │
+│  │ (login.html) │  │ (index.html) │  │ Menu         │
+│  └──────────────┘  └──────────────┘  └──────────────┘
+│         ↓                  ↓                  ↓
+│  ┌──────────────────────────────────────────────────┐
+│  │            Application Core (app.js)              │
+│  ├──────────────────────────────────────────────────┤
+│  │ ✅ Route Management                              │
+│  │ ✅ Role Filtering                                │
+│  │ ✅ Page Loading Logic                            │
+│  └──────────────────────────────────────────────────┘
+│         ↓                  ↓                  ↓
+│  ┌──────────────────────────────────────────────────┐
+│  │              Services & Controllers               │
+│  ├──────────────────────────────────────────────────┤
+│  │ ✅ authManager.js          - Auth & Permissions   │
+│  │ ✅ appointmentService.js   - Appointments        │
+│  │ ✅ patientAdmissionService.js - Patient Mgmt    │
+│  │ ✅ billingService.js       - Finance             │
+│  │ ✅ reportService.js        - Reports             │
+│  └──────────────────────────────────────────────────┘
+│         ↓
+│  ┌──────────────────────────────────────────────────┐
+│  │            Local Database (localStorage)          │
+│  ├──────────────────────────────────────────────────┤
+│  │ ✅ databaseManager.js                             │
+│  │    - Patients    - Invoices                       │
+│  │    - Appointments- Payments                       │
+│  │    - Staff       - Departments                    │
+│  │    - Medical Records                             │
+│  └──────────────────────────────────────────────────┘
+│
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 Data Flow Diagram
+
+```
+USER ACTIONS
+    ↓
+┌─────────────────────────────┐
+│  User Event (Click, Submit) │
+└─────────────────────────────┘
+    ↓
+┌─────────────────────────────┐
+│  Event Listener in app.js   │
+└─────────────────────────────┘
+    ↓
+┌─────────────────────────────┐
+│  Check Permissions          │
+│  (AuthManager)              │
+└─────────────────────────────┘
+    ↓
+┌──────────────────────────────────────┐
+│  Call Service Function               │
+│  (Appointment, Patient, etc.)        │
+└──────────────────────────────────────┘
+    ↓
+┌──────────────────────────────────────┐
+│  Database Operation                  │
+│  (databaseManager.js)                │
+└──────────────────────────────────────┘
+    ↓
+┌──────────────────────────────────────┐
+│  Save to localStorage                │
+│  (Persistent Storage)                │
+└──────────────────────────────────────┘
+    ↓
+┌──────────────────────────────────────┐
+│  Update UI / Reload Page             │
+└──────────────────────────────────────┘
+    ↓
+USER SEES RESULT
+```
+
+---
+
+## 🔐 Authentication Flow
+
+```
+LOGIN PAGE
+   ↓
+┌─────────────────────────┐
+│ Enter Role, Username,   │
+│ Password                │
+└─────────────────────────┘
+   ↓
+┌─────────────────────────┐
+│ Check Against DEMO_USERS│
+│ (authManager.js)        │
+└─────────────────────────┘
+   ↓
+   ├─→ ❌ Invalid → Show Error
+   │
+   └─→ ✅ Valid
+        ↓
+    ┌──────────────────────┐
+    │ Create Session Object│
+    │ - userId             │
+    │ - username           │
+    │ - role               │
+    │ - permissions        │
+    └──────────────────────┘
+        ↓
+    ┌──────────────────────┐
+    │ Save to localStorage │
+    │ (SESSION_KEY)        │
+    └──────────────────────┘
+        ↓
+    ┌──────────────────────┐
+    │ Redirect to Main App │
+    │ (index.html)         │
+    └──────────────────────┘
+        ↓
+    MAIN APP LOADS WITH
+    USER ROLE & PERMISSIONS
+```
+
+---
+
+## 📋 Doctor Workflow Example
+
+```
+DOCTOR LOGS IN
+    ↓
+┌─────────────────────────────────┐
+│ Main Dashboard                  │
+│ Shows:                          │
+│ - My Patients Count             │
+│ - Today's Appointments          │
+│ - Completed Appointments        │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Navigate to Patient Management  │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Click "+ Add Patient"           │
+│ Admission Form Opens            │
+│ - Personal Info                 │
+│ - Medical History               │
+│ - Diagnosis                     │
+│ - Treatment Plan                │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Submit Form                     │
+│ DB.addPatient() called          │
+│ Data saved to localStorage      │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Navigate to Appointments        │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Click "+ Book Appointment"      │
+│ Booking Form Opens              │
+│ - Select Patient (just added)   │
+│ - Select Date & Time            │
+│ - Add Reason                    │
+└─────────────────────────────────┘
+    ↓
+┌─────────────────────────────────┐
+│ Submit Form                     │
+│ DB.addAppointment() called      │
+│ Data saved to localStorage      │
+└─────────────────────────────────┘
+    ↓
+APPOINTMENT SCHEDULED
+WITH PATIENT RECORD
+```
+
+---
+
+## 💾 Database Schema
+
+```
+PATIENTS TABLE
+├── id (Date.now())
+├── firstName
+├── lastName
+├── email
+├── phone
+├── dateOfBirth
+├── gender
+├── diagnosis
+├── allergies
+├── medications
+├── medicalHistory
+├── admissionDate
+├── ward
+├── treatmentPlan
+├── emergencyContact
+├── doctorId
+├── doctorName
+├── status (active/inactive)
+├── createdAt
+└── updatedAt
+
+APPOINTMENTS TABLE
+├── id (Date.now())
+├── patientId
+├── patientName
+├── doctorId
+├── doctorName
+├── date
+├── time
+├── reason
+├── notes
+├── status (scheduled/completed/cancelled)
+└── createdAt
+
+INVOICES TABLE
+├── id (INV-Date.now())
+├── patientId
+├── patientName
+├── totalAmount
+├── paidAmount
+├── status (pending/paid)
+├── dueDate
+└── createdAt
+
+DEPARTMENTS TABLE
+├── id
+├── name
+├── head
+└── active
+```
+
+---
+
+## 🎯 Key Decision Points in Code
+
+```
+IS USER LOGGED IN?
+├─ YES → CHECK PERMISSIONS
+│   ├─ HAS PERMISSION? 
+│   │  ├─ YES → LOAD PAGE
+│   │  └─ NO → SHOW "ACCESS DENIED"
+│   └─ LOAD ROLE-SPECIFIC CONTENT
+└─ NO → REDIRECT TO LOGIN
+
+WHICH ROLE IS USER?
+├─ admin       → Show all menu items & data
+├─ doctor      → Show own patients & appointments
+├─ finance     → Show financial pages only
+├─ reception   → Show patients & appointments
+└─ therapist   → Show assigned patients only
+```
+
+---
+
+## 📈 Performance & Storage
+
+```
+DATA STORAGE LIMIT
+└── localStorage
+    ├── Max ~5-10MB per domain
+    ├── For RehabApp: ~2-3MB typical
+    ├── Can store 100-200 patients easily
+    ├── Can store 1000+ appointments
+    └── Grows with data
+
+SESSION MANAGEMENT
+├── Stored in localStorage
+├── No server needed
+├── Persists across page refreshes
+├── User stays logged in until logout
+└── Can add session timeout if needed
+```
+
+---
+
+This architecture ensures:
+✅ **Offline functionality** - Works without internet
+✅ **Fast performance** - All data in memory
+✅ **Secure** - Role-based access control
+✅ **Scalable** - Can easily expand with more features
+✅ **Multi-user** - Different roles with different access

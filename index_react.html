@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RehabApp">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#1976d2">
+  <meta name="description" content="Professional Rehabilitation Management System for healthcare facilities">
+  <meta name="keywords" content="rehabilitation, healthcare, management, system">
+  <meta name="author" content="SilverTech">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="email=no">
+  <meta name="google" content="notranslate">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>RehabApp - Rehabilitation Management System</title>
+  
+  <link rel="stylesheet" href="style_react.css">
+  <link rel="icon" type="image/png" href="assets/silvertech_logo.png">
+  <link rel="apple-touch-icon" href="assets/silvertech_logo.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  
+  <style>
+    /* Layout improvements: make admin content scrollable and buttons wrap */
+    .admin-content { max-height: calc(100vh - 200px); overflow: auto; padding: 12px; }
+    .admin-form .form-group { margin-bottom: 10px; }
+    .admin-form .form-actions, .admin-panel .admin-form > .form-row { display:flex; flex-wrap:wrap; gap:8px; }
+    .admin-panel .submit-btn { margin-right:8px; }
+    .staff-list table { width:100%; }
+    .staff-list .action-btn { margin-right:6px; }
+    .page-container { padding-bottom: 24px; }
+    /* Ensure archived patients table fits and action column isn't crowded */
+    .data-table td { vertical-align: middle; }
+    @media (max-width: 900px) {
+      .admin-content { max-height: calc(100vh - 140px); }
+      .admin-form .form-group { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="root"></div>
+
+  <!-- Load utilities first -->
+  <script src="src/auth/passwordAuthManager.js"></script>
+  <script src="src/utils/databaseManager.js"></script>
+
+  <!-- Load React -->
+  <script src="vendor/react.production.min.js"></script>
+  <script src="vendor/react-dom.production.min.js"></script>
+
+  <!-- Socket.io client -->
+  <script src="vendor/socket.io.min.js"></script>
+
+  <!-- Application bundle -->
+  <script src="app.bundle.js"></script>
+
+  <!-- Service worker registration only over http/https -->
+  <script>
+    if ('serviceWorker' in navigator && location.protocol && (location.protocol.startsWith('http') || location.protocol.startsWith('https'))) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered.'))
+          .catch(err => console.warn('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+
+  </body>
+</html>

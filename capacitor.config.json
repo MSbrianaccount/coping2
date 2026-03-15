@@ -1,0 +1,40 @@
+{
+  "appId": "com.silvertech.rehabapp",
+  "appName": "RehabApp",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "loggingLevel": "DEBUG",
+  "hideLogs": [],
+  "server": {
+    "androidScheme": "https",
+    "hostname": "localhost",
+    "allowNavigation": [
+      "127.0.0.1",
+      "localhost",
+      "*.local",
+      "192.168.1.*",
+      "socket.io"
+    ]
+  },
+  "plugins": {
+    "Camera": {
+      "allowEditing": true,
+      "limitBatchOperationsToPages": true,
+      "quantity": 10
+    },
+    "Geolocation": {
+      "tailored": true
+    },
+    "Storage": {
+      "driver": "react-native-sqlite-storage"
+    }
+  },
+  "android": {
+    "minVersion": 24,
+    "useLegacyBridge": false,
+    "willMaskTapIndicator": false
+  },
+  "ios": {
+    "minVersion": "13.0"
+  }
+}
